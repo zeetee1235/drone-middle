@@ -1,0 +1,88 @@
+grid_detector:
+  hough_threshold: 80
+  min_line_length: 30
+  max_line_gap: 10
+  angle_tolerance_deg: 10.0
+  expected_grid_pixel_width: 110
+  min_intersections_valid: 2
+  blur_kernel_size: 5
+
+aruco_tracker:
+  dictionary: DICT_4X4_50
+  confirm_threshold: 0.75
+  sway_threshold: 0.3
+  confidence_increment: 0.15
+  confidence_decay: 0.8
+  pos_stable_px: 10.0
+  size_stable_ratio: 0.2
+
+visual_odometry:
+  target_altitude_m: 2.0
+  camera_fov_deg: 110.0
+  grid_spacing_m: 3.0
+  grid_snap_radius_m: 0.4
+  optical_flow_fps: 60.0
+
+sprint_planner:
+  v_max_mps: 3.0
+  a_max_mps2: 2.0
+  a_brake_mps2: 2.5
+  v_turn_mps: 0.5
+  t_turn_90_sec: 1.5
+  t_turn_180_sec: 2.5
+  t_stabilize_sec: 0.5
+  t_marker_check_sec: 2.0
+  t_hover_sec: 3.0
+  grid_spacing_m: 3.0
+  weights:
+    time: 1.0
+    turn: 0.5
+    stop: 0.35
+    risk: 1.0
+    altitude: 1.0
+    coverage: 2.0
+    marker_likelihood: 1.5
+
+flight_controller:
+  target_altitude_m: 2.0
+  sprint:
+    v_max_xy: 3.0
+    a_max_xy: 2.0
+    jerk_max: 5.0
+    tilt_max_deg: 25.0
+  approach:
+    v_max_xy: 1.0
+    a_max_xy: 1.0
+    jerk_max: 2.0
+    tilt_max_deg: 15.0
+  anti_sway:
+    v_max_xy: 0.5
+    a_max_xy: 0.5
+    jerk_max: 1.0
+    tilt_max_deg: 10.0
+  hover_confirm:
+    v_max_xy: 0.1
+    a_max_xy: 0.2
+    jerk_max: 0.5
+    tilt_max_deg: 5.0
+  vision_servo:
+    v_max_xy: 0.3
+    a_max_xy: 0.3
+    jerk_max: 1.0
+    v_max_z: 0.2
+
+mission_manager:
+  hover_confirm_duration_sec: 3.0
+  battery_return_threshold_pct: 20.0
+  max_drift_before_stabilize_m: 0.5
+  home_approach_radius_m: 5.0
+  vertiport_detect_radius_m: 3.0
+
+vertiport_detector:
+  hue_low: 10
+  hue_high: 25
+  saturation_low: 100
+  value_low: 100
+  min_center_confidence: 0.7
+  center_error_px_threshold: 20.0
+  servo_gain_xy: 0.003

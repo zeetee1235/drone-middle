@@ -1,0 +1,52 @@
+# Local/editor state
+.agents/
+.codex/
+.vscode/
+.venv/
+
+# ROS2/colcon build outputs
+build/
+install/
+log/
+
+# External dependencies checked out by setup scripts
+external/
+src/sprint_drone/models/px4vision
+
+# Simulation recordings and temporary runtime logs
+bags/
+tmp/
+*.mcap
+reports/gazebo_run_*/
+
+# Python caches
+__pycache__/
+*.py[cod]
+.pytest_cache/
+
+# CMake/CTest local files
+CMakeFiles/
+CMakeCache.txt
+Testing/
+compile_commands.json
+
+# LaTeX build intermediates
+*.aux
+*.bbl
+*.bcf
+*.blg
+*.fdb_latexmk
+*.fls
+*.lof
+*.log
+*.lot
+*.out
+*.run.xml
+*.synctex.gz
+*.toc
+*.xdv
+
+# OS/runtime noise
+.DS_Store
+*.swp
+*.swo

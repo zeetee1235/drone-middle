@@ -1,0 +1,26 @@
+# ros-gz-bridge mapping for PX4 Gazebo x500_mono_cam_down SITL.
+#
+# The default topic names target:
+#   PX4_GZ_WORLD=sprint_grid_world_px4
+#   make px4_sitl gz_x500_mono_cam_down
+#
+# If PX4 changes the camera sensor name, run:
+#   gz topic -l | grep x500_mono_cam_down
+# and update the two gz_topic_name values below. Some PX4 model revisions use
+# sensor/camera_sensor/... instead of sensor/camera/....
+
+- ros_topic_name: "/drone/camera/down/image_raw"
+  gz_topic_name: "/world/sprint_grid_world_px4/model/x500_mono_cam_down_0/link/camera_link/sensor/camera/image"
+  ros_type_name: "sensor_msgs/msg/Image"
+  gz_type_name: "gz.msgs.Image"
+  direction: GZ_TO_ROS
+
+- ros_topic_name: "/drone/camera/down/camera_info"
+  gz_topic_name: "/world/sprint_grid_world_px4/model/x500_mono_cam_down_0/link/camera_link/sensor/camera/camera_info"
+  ros_type_name: "sensor_msgs/msg/CameraInfo"
+  gz_type_name: "gz.msgs.CameraInfo"
+  direction: GZ_TO_ROS
+
+# PX4 uORB topics are bridged by Micro XRCE-DDS Agent, not ros-gz-bridge.
+# Start the agent separately:
+#   scripts/run_micro_xrce_agent.sh

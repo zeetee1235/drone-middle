@@ -1,0 +1,247 @@
+<!doctype html>
+<html lang="ko">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Sprint Drone Competition Environment Preview</title>
+  <style>
+    :root {
+      --bg: #111318;
+      --panel: #1b2028;
+      --text: #e9edf2;
+      --muted: #9aa7b5;
+      --safe: #44556b;
+      --mission: #2f3845;
+      --grid: #f4f7fb;
+      --orange: #d77b18;
+      --green: #45b47b;
+      --blue: #5ea7ff;
+      --red: #ef6b73;
+    }
+
+    * { box-sizing: border-box; }
+
+    body {
+      margin: 0;
+      min-height: 100vh;
+      display: grid;
+      grid-template-columns: minmax(260px, 340px) 1fr;
+      color: var(--text);
+      background: var(--bg);
+      font-family: ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+    }
+
+    aside {
+      padding: 24px;
+      background: var(--panel);
+      border-right: 1px solid #2a3240;
+    }
+
+    main {
+      min-width: 0;
+      padding: 20px;
+      display: grid;
+      place-items: center;
+    }
+
+    h1 {
+      margin: 0 0 8px;
+      font-size: 22px;
+      letter-spacing: 0;
+    }
+
+    p {
+      margin: 0 0 18px;
+      color: var(--muted);
+      line-height: 1.5;
+      font-size: 14px;
+    }
+
+    dl {
+      display: grid;
+      grid-template-columns: 1fr auto;
+      gap: 10px 16px;
+      margin: 20px 0;
+      font-size: 14px;
+    }
+
+    dt { color: var(--muted); }
+    dd { margin: 0; font-weight: 650; }
+
+    .legend {
+      display: grid;
+      gap: 10px;
+      margin-top: 20px;
+      font-size: 14px;
+    }
+
+    .legend div {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      color: var(--muted);
+    }
+
+    .swatch {
+      width: 16px;
+      height: 16px;
+      border: 1px solid #ffffff44;
+      flex: 0 0 auto;
+    }
+
+    .map-wrap {
+      width: min(100%, 1180px);
+      border: 1px solid #2a3240;
+      background: #0d1015;
+      padding: 16px;
+    }
+
+    svg {
+      display: block;
+      width: 100%;
+      height: auto;
+      background: #0f1217;
+    }
+
+    .label {
+      fill: #dce5ef;
+      font-size: 0.58px;
+      font-weight: 700;
+      paint-order: stroke;
+      stroke: #101318;
+      stroke-width: 0.08px;
+      stroke-linejoin: round;
+    }
+
+    .small-label {
+      fill: #dce5ef;
+      font-size: 0.44px;
+      font-weight: 650;
+      paint-order: stroke;
+      stroke: #101318;
+      stroke-width: 0.07px;
+      stroke-linejoin: round;
+    }
+
+    @media (max-width: 860px) {
+      body {
+        grid-template-columns: 1fr;
+      }
+
+      aside {
+        border-right: 0;
+        border-bottom: 1px solid #2a3240;
+      }
+    }
+  </style>
+</head>
+<body>
+  <aside>
+    <h1>대회 환경 프리뷰</h1>
+    <p>현재 명세 기준의 top-down 재현입니다. 좌표 단위는 m이고, 실제 Gazebo 월드도 이 좌표계를 기준으로 맞춥니다.</p>
+
+    <dl>
+      <dt>Safe Area</dt><dd>32 x 23m</dd>
+      <dt>Mission Area</dt><dd>24 x 15m</dd>
+      <dt>Grid</dt><dd>3m 간격 / 10cm 선</dd>
+      <dt>Flight Altitude</dt><dd>2m</dd>
+      <dt>Vertiport</dt><dd>지름 3m</dd>
+      <dt>Markers</dt><dd>예시 4개 / 50cm</dd>
+    </dl>
+
+    <div class="legend">
+      <div><span class="swatch" style="background:#151a22;border-color:#53657d"></span>Safe Area</div>
+      <div><span class="swatch" style="background:#2f3845"></span>Mission Area</div>
+      <div><span class="swatch" style="background:#f4f7fb"></span>Grid Lines</div>
+      <div><span class="swatch" style="background:#d77b18;border-radius:999px"></span>Vertiport</div>
+      <div><span class="swatch" style="background:#45b47b"></span>ArUco Markers</div>
+      <div><span class="swatch" style="background:#5ea7ff"></span>Example Sprint Path</div>
+    </div>
+  </aside>
+
+  <main>
+    <div class="map-wrap">
+      <svg viewBox="-2 -3 36 29" role="img" aria-label="Competition environment top-down preview">
+        <defs>
+          <pattern id="grid3m" x="4" y="4" width="3" height="3" patternUnits="userSpaceOnUse">
+            <path d="M 3 0 L 0 0 0 3" fill="none" stroke="#f4f7fb" stroke-width="0.10"/>
+          </pattern>
+          <marker id="arrow" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="4" markerHeight="4" orient="auto-start-reverse">
+            <path d="M 0 0 L 10 5 L 0 10 z" fill="#5ea7ff"/>
+          </marker>
+          <filter id="softShadow" x="-20%" y="-20%" width="140%" height="140%">
+            <feDropShadow dx="0" dy="0.18" stdDeviation="0.18" flood-color="#000" flood-opacity="0.55"/>
+          </filter>
+        </defs>
+
+        <rect x="0" y="0" width="32" height="23" fill="#151a22" stroke="#53657d" stroke-width="0.12"/>
+        <text x="0.6" y="1.1" class="label">Safe Area 32 x 23m</text>
+
+        <rect x="4" y="4" width="24" height="15" fill="#2f3845" stroke="#c8d0da" stroke-width="0.12"/>
+        <rect x="4" y="4" width="24" height="15" fill="url(#grid3m)" opacity="0.95"/>
+        <text x="4.4" y="4.9" class="label">Mission Area 24 x 15m</text>
+
+        <g stroke="#f4f7fb" stroke-width="0.10" opacity="0.95">
+          <line x1="4" y1="4" x2="28" y2="4"/>
+          <line x1="4" y1="7" x2="28" y2="7"/>
+          <line x1="4" y1="10" x2="28" y2="10"/>
+          <line x1="4" y1="13" x2="28" y2="13"/>
+          <line x1="4" y1="16" x2="28" y2="16"/>
+          <line x1="4" y1="19" x2="28" y2="19"/>
+          <line x1="4" y1="4" x2="4" y2="19"/>
+          <line x1="7" y1="4" x2="7" y2="19"/>
+          <line x1="10" y1="4" x2="10" y2="19"/>
+          <line x1="13" y1="4" x2="13" y2="19"/>
+          <line x1="16" y1="4" x2="16" y2="19"/>
+          <line x1="19" y1="4" x2="19" y2="19"/>
+          <line x1="22" y1="4" x2="22" y2="19"/>
+          <line x1="25" y1="4" x2="25" y2="19"/>
+          <line x1="28" y1="4" x2="28" y2="19"/>
+        </g>
+
+        <g fill="#f4f7fb" opacity="0.9">
+          <rect x="3.9" y="3.9" width="0.2" height="0.2"/>
+          <rect x="6.9" y="3.9" width="0.2" height="0.2"/>
+          <rect x="9.9" y="3.9" width="0.2" height="0.2"/>
+          <rect x="12.9" y="3.9" width="0.2" height="0.2"/>
+          <rect x="15.9" y="3.9" width="0.2" height="0.2"/>
+          <rect x="18.9" y="3.9" width="0.2" height="0.2"/>
+          <rect x="21.9" y="3.9" width="0.2" height="0.2"/>
+          <rect x="24.9" y="3.9" width="0.2" height="0.2"/>
+          <rect x="27.9" y="3.9" width="0.2" height="0.2"/>
+        </g>
+
+        <circle cx="2" cy="19" r="1.5" fill="#d77b18" stroke="#ffe0bd" stroke-width="0.1" filter="url(#softShadow)"/>
+        <circle cx="2" cy="19" r="0.22" fill="#ffead0"/>
+        <text x="0.35" y="21.35" class="label">Vertiport D=3m, H=0.7m</text>
+
+        <g fill="#45b47b" stroke="#d7ffe8" stroke-width="0.08" filter="url(#softShadow)">
+          <rect x="9.75" y="9.75" width="0.5" height="0.5"/>
+          <rect x="18.75" y="6.75" width="0.5" height="0.5"/>
+          <rect x="24.75" y="15.75" width="0.5" height="0.5"/>
+          <rect x="12.75" y="15.75" width="0.5" height="0.5"/>
+        </g>
+        <text x="10.45" y="10.1" class="small-label">ID 3</text>
+        <text x="19.45" y="7.1" class="small-label">ID 8</text>
+        <text x="25.45" y="16.1" class="small-label">ID 1</text>
+        <text x="13.45" y="16.1" class="small-label">ID 5</text>
+
+        <path d="M 2 19 L 4 19 L 7 19 L 10 19 L 10 16 L 10 13 L 10 10 L 13 10 L 16 10 L 19 10 L 19 7"
+              fill="none" stroke="#5ea7ff" stroke-width="0.22" stroke-linecap="round" stroke-linejoin="round"
+              marker-end="url(#arrow)" opacity="0.9"/>
+        <text x="4.2" y="20.7" class="small-label">example sprint/search path</text>
+
+        <rect x="14.75" y="7.75" width="2.5" height="2.5" fill="#5ea7ff" opacity="0.13" stroke="#5ea7ff" stroke-width="0.08" stroke-dasharray="0.25 0.18"/>
+        <text x="14.35" y="7.35" class="small-label">2m altitude camera footprint 예시</text>
+
+        <g fill="#9aa7b5" font-size="0.38px">
+          <text x="4" y="20.1">x=0</text>
+          <text x="26.7" y="20.1">x=24m</text>
+          <text x="1.8" y="4.15">y=0</text>
+          <text x="1.65" y="19.15">y=15m</text>
+        </g>
+      </svg>
+    </div>
+  </main>
+</body>
+</html>

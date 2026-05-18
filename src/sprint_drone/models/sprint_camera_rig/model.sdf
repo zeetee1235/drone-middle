@@ -1,0 +1,55 @@
+<?xml version="1.0" ?>
+<!--
+  Standalone downward camera rig for perception testing.
+
+  Coordinate convention:
+    SDF camera default view direction = +X.
+    pitch = +π/2 (1.5708) rotates +X into -Z → camera looks straight down.
+
+  The camera sensor publishes to Gazebo topic /gz/drone/camera/down.
+  sim_gazebo.launch.py bridges this to ROS2 /drone/camera/down/image_raw.
+-->
+<sdf version="1.10">
+  <model name="sprint_camera_rig">
+    <static>true</static>
+    <link name="camera_link">
+      <visual name="body">
+        <geometry>
+          <box><size>0.12 0.12 0.04</size></box>
+        </geometry>
+        <material>
+          <ambient>0.2 0.2 0.8 0.7</ambient>
+          <diffuse>0.2 0.2 0.8 0.7</diffuse>
+        </material>
+      </visual>
+
+      <sensor name="down_camera" type="camera">
+        <!-- 5 cm below link origin, pitched 90° to face straight down -->
+        <pose>0 0 -0.05 0 1.5707963 0</pose>
+        <camera name="down_camera">
+          <!-- 110° horizontal FOV in radians -->
+          <horizontal_fov>1.9199</horizontal_fov>
+          <image>
+            <width>640</width>
+            <height>480</height>
+            <format>R8G8B8</format>
+          </image>
+          <clip>
+            <near>0.05</near>
+            <far>50.0</far>
+          </clip>
+          <noise>
+            <type>gaussian</type>
+            <mean>0.0</mean>
+            <stddev>0.003</stddev>
+          </noise>
+        </camera>
+        <always_on>1</always_on>
+        <update_rate>60</update_rate>
+        <visualize>false</visualize>
+        <!-- Gazebo-side topic; bridged to /drone/camera/down/image_raw by sim_gazebo.launch.py -->
+        <topic>/gz/drone/camera/down</topic>
+      </sensor>
+    </link>
+  </model>
+</sdf>

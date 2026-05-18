@@ -1,0 +1,122 @@
+grid_detector:
+  ros__parameters:
+    hough_threshold: 80
+    min_line_length: 30
+    max_line_gap: 10
+    angle_tolerance_deg: 10.0
+    expected_grid_pixel_width: 110.0
+    min_intersections_valid: 2
+    blur_kernel_size: 5
+    canny_threshold_low: 50.0
+    canny_threshold_high: 150.0
+    merge_axis_tolerance_px: 8.0
+    merge_gap_tolerance_px: 20.0
+    intersection_padding_px: 12.0
+
+aruco_tracker:
+  ros__parameters:
+    confirm_threshold: 0.75
+    sway_threshold: 0.3
+    confidence_increment: 0.15
+    confidence_decay: 0.8
+    missing_decay: 0.92
+    pos_stable_px: 10.0
+    size_stable_ratio: 0.2
+    expected_grid_pixel_width: 110.0
+
+visual_odometry:
+  ros__parameters:
+    target_altitude_m: 2.0
+    camera_fov_deg: 110.0
+    grid_spacing_m: 3.0
+    grid_snap_radius_m: 0.4
+    max_corners: 160
+    quality_level: 0.01
+    min_distance_px: 10.0
+    lk_window_px: 21
+    min_tracked_points: 12
+
+sprint_planner:
+  ros__parameters:
+    v_max_mps: 10.0
+    a_max_mps2: 6.0
+    a_brake_mps2: 8.0
+    t_turn_90_sec: 1.5
+    t_turn_180_sec: 2.5
+    t_marker_check_sec: 2.0
+    t_hover_sec: 3.0
+    t_stabilize_sec: 0.5
+    waypoint_advance_m: 1.5
+
+mission_manager:
+  ros__parameters:
+    required_marker_count: 4
+    hover_confirm_duration_sec: 3.0
+    battery_return_threshold_pct: 20.0
+    max_drift_before_stabilize_m: 0.5
+    home_approach_radius_m: 5.0
+    vertiport_detect_radius_m: 3.0
+    auto_takeoff_complete: false
+    auto_home_initialized: true
+    auto_perception_stable: true
+
+px4_offboard_control:
+  ros__parameters:
+    target_altitude_m: 2.0
+    sway_threshold: 0.3
+    vision_servo_gain_xy: 0.003
+    vision_servo_max_xy: 0.3
+    takeoff:
+      v_max_xy: 0.3
+      v_max_z: 0.4
+      a_max_xy: 0.5
+      jerk_max: 1.0
+      tilt_max_deg: 10.0
+    sprint:
+      v_max_xy: 10.0
+      v_max_z: 0.3
+      a_max_xy: 6.0
+      jerk_max: 15.0
+      tilt_max_deg: 45.0
+    approach:
+      v_max_xy: 1.0
+      v_max_z: 0.25
+      a_max_xy: 1.0
+      jerk_max: 2.0
+      tilt_max_deg: 15.0
+    anti_sway:
+      v_max_xy: 0.5
+      v_max_z: 0.2
+      a_max_xy: 0.5
+      jerk_max: 1.0
+      tilt_max_deg: 10.0
+    hover_confirm:
+      v_max_xy: 0.1
+      v_max_z: 0.15
+      a_max_xy: 0.2
+      jerk_max: 0.5
+      tilt_max_deg: 5.0
+    return:
+      v_max_xy: 10.0
+      v_max_z: 0.3
+      a_max_xy: 6.0
+      jerk_max: 10.0
+      tilt_max_deg: 45.0
+    vision_servo:
+      v_max_xy: 0.3
+      v_max_z: 0.2
+      a_max_xy: 0.3
+      jerk_max: 1.0
+      tilt_max_deg: 8.0
+    landing:
+      v_max_xy: 0.1
+      v_max_z: 0.2
+      a_max_xy: 0.2
+      jerk_max: 0.5
+      tilt_max_deg: 5.0
+    hold:
+      v_max_xy: 0.1
+      v_max_z: 0.1
+      a_max_xy: 0.2
+      jerk_max: 0.5
+      tilt_max_deg: 5.0

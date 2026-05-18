@@ -1,0 +1,94 @@
+<?xml version="1.0" ?>
+<sdf version="1.10">
+  <world name="sprint_grid_preview">
+    <gravity>0 0 -9.81</gravity>
+
+    <light name="sun" type="directional">
+      <pose>0 0 10 0 0 0</pose>
+      <diffuse>0.95 0.95 0.95 1</diffuse>
+      <specular>0.2 0.2 0.2 1</specular>
+      <direction>-0.3 0.4 -1</direction>
+    </light>
+
+    <model name="safe_area_floor">
+      <static>true</static>
+      <pose>16 11.5 0 0 0 0</pose>
+      <link name="link">
+        <visual name="visual">
+          <geometry><box><size>32 23 0.02</size></box></geometry>
+          <material>
+            <ambient>0.08 0.10 0.13 1</ambient>
+            <diffuse>0.08 0.10 0.13 1</diffuse>
+          </material>
+        </visual>
+        <collision name="collision">
+          <geometry><box><size>32 23 0.02</size></box></geometry>
+        </collision>
+      </link>
+    </model>
+
+    <model name="mission_area">
+      <static>true</static>
+      <pose>16 11.5 0.015 0 0 0</pose>
+      <link name="link">
+        <visual name="visual">
+          <geometry><box><size>24 15 0.01</size></box></geometry>
+          <material>
+            <ambient>0.18 0.22 0.28 1</ambient>
+            <diffuse>0.18 0.22 0.28 1</diffuse>
+          </material>
+        </visual>
+      </link>
+    </model>
+
+    <!-- Grid lines: mission origin at (4, 4), spacing 3m, line width 0.10m. -->
+    <model name="grid_lines">
+      <static>true</static>
+      <link name="link">
+        <visual name="h_0"><pose>16 4 0.03 0 0 0</pose><geometry><box><size>24 0.10 0.01</size></box></geometry><material><ambient>1 1 1 1</ambient><diffuse>1 1 1 1</diffuse></material></visual>
+        <visual name="h_1"><pose>16 7 0.03 0 0 0</pose><geometry><box><size>24 0.10 0.01</size></box></geometry><material><ambient>1 1 1 1</ambient><diffuse>1 1 1 1</diffuse></material></visual>
+        <visual name="h_2"><pose>16 10 0.03 0 0 0</pose><geometry><box><size>24 0.10 0.01</size></box></geometry><material><ambient>1 1 1 1</ambient><diffuse>1 1 1 1</diffuse></material></visual>
+        <visual name="h_3"><pose>16 13 0.03 0 0 0</pose><geometry><box><size>24 0.10 0.01</size></box></geometry><material><ambient>1 1 1 1</ambient><diffuse>1 1 1 1</diffuse></material></visual>
+        <visual name="h_4"><pose>16 16 0.03 0 0 0</pose><geometry><box><size>24 0.10 0.01</size></box></geometry><material><ambient>1 1 1 1</ambient><diffuse>1 1 1 1</diffuse></material></visual>
+        <visual name="h_5"><pose>16 19 0.03 0 0 0</pose><geometry><box><size>24 0.10 0.01</size></box></geometry><material><ambient>1 1 1 1</ambient><diffuse>1 1 1 1</diffuse></material></visual>
+        <visual name="v_0"><pose>4 11.5 0.03 0 0 0</pose><geometry><box><size>0.10 15 0.01</size></box></geometry><material><ambient>1 1 1 1</ambient><diffuse>1 1 1 1</diffuse></material></visual>
+        <visual name="v_1"><pose>7 11.5 0.03 0 0 0</pose><geometry><box><size>0.10 15 0.01</size></box></geometry><material><ambient>1 1 1 1</ambient><diffuse>1 1 1 1</diffuse></material></visual>
+        <visual name="v_2"><pose>10 11.5 0.03 0 0 0</pose><geometry><box><size>0.10 15 0.01</size></box></geometry><material><ambient>1 1 1 1</ambient><diffuse>1 1 1 1</diffuse></material></visual>
+        <visual name="v_3"><pose>13 11.5 0.03 0 0 0</pose><geometry><box><size>0.10 15 0.01</size></box></geometry><material><ambient>1 1 1 1</ambient><diffuse>1 1 1 1</diffuse></material></visual>
+        <visual name="v_4"><pose>16 11.5 0.03 0 0 0</pose><geometry><box><size>0.10 15 0.01</size></box></geometry><material><ambient>1 1 1 1</ambient><diffuse>1 1 1 1</diffuse></material></visual>
+        <visual name="v_5"><pose>19 11.5 0.03 0 0 0</pose><geometry><box><size>0.10 15 0.01</size></box></geometry><material><ambient>1 1 1 1</ambient><diffuse>1 1 1 1</diffuse></material></visual>
+        <visual name="v_6"><pose>22 11.5 0.03 0 0 0</pose><geometry><box><size>0.10 15 0.01</size></box></geometry><material><ambient>1 1 1 1</ambient><diffuse>1 1 1 1</diffuse></material></visual>
+        <visual name="v_7"><pose>25 11.5 0.03 0 0 0</pose><geometry><box><size>0.10 15 0.01</size></box></geometry><material><ambient>1 1 1 1</ambient><diffuse>1 1 1 1</diffuse></material></visual>
+        <visual name="v_8"><pose>28 11.5 0.03 0 0 0</pose><geometry><box><size>0.10 15 0.01</size></box></geometry><material><ambient>1 1 1 1</ambient><diffuse>1 1 1 1</diffuse></material></visual>
+      </link>
+    </model>
+
+    <model name="vertiport">
+      <static>true</static>
+      <pose>2 19 0.36 0 0 0</pose>
+      <link name="link">
+        <visual name="pad">
+          <geometry><cylinder><radius>1.5</radius><length>0.7</length></cylinder></geometry>
+          <material>
+            <ambient>0.8 0.38 0.05 1</ambient>
+            <diffuse>0.8 0.38 0.05 1</diffuse>
+          </material>
+        </visual>
+        <collision name="collision">
+          <geometry><cylinder><radius>1.5</radius><length>0.7</length></cylinder></geometry>
+        </collision>
+      </link>
+    </model>
+
+    <!-- Placeholder green squares for marker positions; texture-based ArUco assets will replace these. -->
+    <model name="marker_placeholders">
+      <static>true</static>
+      <link name="link">
+        <visual name="id_3"><pose>10 10 0.06 0 0 0</pose><geometry><box><size>0.5 0.5 0.01</size></box></geometry><material><ambient>0.1 0.7 0.35 1</ambient><diffuse>0.1 0.7 0.35 1</diffuse></material></visual>
+        <visual name="id_8"><pose>19 7 0.06 0 0 0</pose><geometry><box><size>0.5 0.5 0.01</size></box></geometry><material><ambient>0.1 0.7 0.35 1</ambient><diffuse>0.1 0.7 0.35 1</diffuse></material></visual>
+        <visual name="id_1"><pose>25 16 0.06 0 0 0</pose><geometry><box><size>0.5 0.5 0.01</size></box></geometry><material><ambient>0.1 0.7 0.35 1</ambient><diffuse>0.1 0.7 0.35 1</diffuse></material></visual>
+        <visual name="id_5"><pose>13 16 0.06 0 0 0</pose><geometry><box><size>0.5 0.5 0.01</size></box></geometry><material><ambient>0.1 0.7 0.35 1</ambient><diffuse>0.1 0.7 0.35 1</diffuse></material></visual>
+      </link>
+    </model>
+  </world>
+</sdf>

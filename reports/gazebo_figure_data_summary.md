@@ -1,0 +1,45 @@
+# Headless Mission Figure Data Summary
+
+> Fig. 8 is generated from the headless 10 m/s full-mission rosbag. Fig. 5/6 are regenerated from the mission-design plotters so they can show the complete marker layout, hover-confirm segments, rescue order, return, and landing sequence.
+
+- Duration: 57.500 s
+- LANDED transition: 52.69 s
+- Pose samples: 1437
+- Trajectory setpoints: 0
+- Planner velocity profiles: 576
+- Downward camera frames: 0
+- Grid detector messages: 0
+- Marker messages: 0
+- Max localization sample step: 0.400 m
+- Pose-derived ground speed: mean 3.760 m/s, p95 10.049 m/s, max 10.775 m/s
+- Planner target speed: mean 8.946 m/s, p95 10.000 m/s, max 10.000 m/s
+- Mission transitions:
+  - 0.09s: TAKEOFF
+  - 1.39s: HOME_INIT
+  - 1.49s: GRID_SEARCH
+  - 3.19s: MARKER_APPROACH
+  - 3.29s: ANTI_SWAY
+  - 3.39s: HOVER_CONFIRM
+  - 6.39s: MARKER_SAVE
+  - 6.49s: GRID_SEARCH
+  - 9.79s: MARKER_APPROACH
+  - 9.89s: ANTI_SWAY
+  - 9.99s: HOVER_CONFIRM
+  - 12.99s: MARKER_SAVE
+  - 13.09s: GRID_SEARCH
+  - 21.09s: MARKER_APPROACH
+  - 21.19s: ANTI_SWAY
+  - 21.29s: HOVER_CONFIRM
+  - 24.39s: MARKER_SAVE
+  - 24.49s: GRID_SEARCH
+  - 25.89s: MARKER_APPROACH
+  - 25.99s: ANTI_SWAY
+  - 26.09s: HOVER_CONFIRM
+  - 29.09s: MARKER_SAVE
+  - 29.19s: RESCUE_ROUTE_PLAN
+  - 29.29s: RESCUE_VISIT
+  - 47.19s: RETURN_HOME
+  - 48.79s: VERTIPORT_ACQUIRE
+  - 48.89s: VISION_SERVO_LAND
+  - 52.69s: LANDED
+- Controller transitions:
