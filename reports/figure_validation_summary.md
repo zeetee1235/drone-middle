@@ -2,11 +2,11 @@
 
 ## Passed checks
 - fig_01_system_block.png: 2354x1209
-- fig_02_mission_flow.png: 2175x703
+- fig_02_mission_flow.png: 2175x737
 - fig_03_optical_flow_snap.png: 2175x1090
 - fig_04_software_architecture.png: 2260x1245
 - fig_05_gazebo_search_path.png: 1366x837
-- fig_06_gazebo_mission_path.png: 1376x864
+- fig_06_gazebo_mission_path.png: 1835x1574
 - fig_11_marker_sweep_results.png: 2779x1027
 - fig_12_marker_layout_cases.png: 2601x903
 - fig_13_phase1_speed_tradeoff.png: 2759x1027

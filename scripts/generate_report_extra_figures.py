@@ -564,33 +564,43 @@ def save_fig_13_phase1_speed_tradeoff(speed_results: dict[float, list[SweepResul
 
 
 def save_fig_02_mission_flow() -> None:
-    fig, ax = plt.subplots(figsize=(12.5, 3.6))
+    fig, ax = plt.subplots(figsize=(12.5, 3.8))
     ax.set_xlim(0, 12.5)
-    ax.set_ylim(0, 3.6)
+    ax.set_ylim(0, 3.8)
     ax.axis("off")
 
     phases = [
         ("Phase 0", "Takeoff / Home\n2 m initialization", "#dbeafe"),
         ("Phase 1", "Grid Search\nintersection sprint", "#dcfce7"),
-        ("Trigger", "4 markers found\nstop search immediately", "#ffedd5"),
         ("Phase 2", "Direct Rescue\nID 4→3→2→1", "#f3e8ff"),
         ("Phase 3", "Return / Land\nvisual servo landing", "#e0f2fe"),
     ]
-    x = 0.35
-    widths = [2.0, 2.25, 2.05, 2.25, 2.1]
+    x = 0.55
+    widths = [2.25, 2.6, 2.55, 2.35]
     centers = []
     for (title, body, color), width in zip(phases, widths):
-        draw_box(ax, (x, 1.25), (width, 1.25), title, body, color=color, fs=10)
-        centers.append((x + width / 2, 1.875))
-        x += width + 0.35
+        draw_box(ax, (x, 1.42), (width, 1.25), title, body, color=color, fs=10)
+        centers.append((x + width / 2, 2.045, width))
+        x += width + 0.55
 
-    for a, b in zip(centers[:-1], centers[1:]):
-        draw_arrow(ax, (a[0] + 0.85, a[1]), (b[0] - 0.85, b[1]))
+    arrow_labels = [
+        "home fixed",
+        "4 markers confirmed",
+        "rescues done",
+    ]
+    for a, b, label in zip(centers[:-1], centers[1:], arrow_labels):
+        draw_arrow(
+            ax,
+            (a[0] + a[2] / 2 - 0.10, a[1]),
+            (b[0] - b[2] / 2 + 0.10, b[1]),
+            text=label,
+            text_offset=(0.0, -0.78),
+        )
 
-    ax.text(3.55, 0.58, "Optical Flow + grid-node snap, no line PID", ha="center", fontsize=9.0, color=PALETTE["green"])
-    ax.text(8.25, 0.58, "Ignore grid lines, sprint through stored coordinates", ha="center", fontsize=9.0, color=PALETTE["violet"])
-    ax.plot([2.8, 5.55], [0.85, 0.85], color=PALETTE["green"], lw=2.0)
-    ax.plot([7.05, 9.85], [0.85, 0.85], color=PALETTE["violet"], lw=2.0)
+    ax.text(4.1, 0.62, "Optical Flow + grid-node snap, no line PID", ha="center", fontsize=9.0, color=PALETTE["green"])
+    ax.text(7.95, 0.62, "stored coordinates + direct sprint", ha="center", fontsize=9.0, color=PALETTE["violet"])
+    ax.plot([2.75, 5.45], [0.90, 0.90], color=PALETTE["green"], lw=2.0)
+    ax.plot([6.8, 9.1], [0.90, 0.90], color=PALETTE["violet"], lw=2.0)
     ax.set_title("탐색/구조 분리 임무 흐름", fontsize=13, weight="bold", color="#111827")
     savefig(REPORT_DIR / "fig_02_mission_flow.png")
 
